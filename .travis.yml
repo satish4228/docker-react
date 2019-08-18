@@ -6,6 +6,8 @@ services:
 before_install:
   - docker build -t satish/react-web -f Dockerfile.dev .
 
+script:
+  - docker run satish/react-web npm run test -- --coverage
 
 deploy:
   provider: elasticbeanstalk
