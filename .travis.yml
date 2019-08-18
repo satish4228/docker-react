@@ -4,6 +4,7 @@ services:
 
 
 before_install:
+  - gem install docker
   - docker build -t satish/react-web -f Dockerfile.dev .
 
 script:
