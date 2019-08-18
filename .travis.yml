@@ -6,5 +6,16 @@ services:
 before_install:
   - docker build -t satish/react-web -f Dockerfile.dev .
 
-script:
-  - docker run satish/react-web npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react-web"
+  env: "DockerReactWeb-env"
+  bucket_name: "elasticbeanstalk-us-east-2-306556163988"
+  bucket_path: "docker-react-web"
+  on:
+    branch: master
+  access_key_id: $AWS_DOCKER_KEY
+  secret_access_key:
+    secure: "$AWS_DOCKER_SECRET"
